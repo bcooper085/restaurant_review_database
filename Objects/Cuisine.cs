@@ -110,6 +110,22 @@ namespace DerpApp
             return foundCuisine;
         }
 
+
+        public static void DeleteSpecific(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM cuisines WHERE id = @CuisineId;", conn);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@CuisineId";
+            idParameter.Value = id;
+            cmd.Parameters.Add(idParameter);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();

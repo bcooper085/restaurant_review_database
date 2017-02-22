@@ -56,5 +56,18 @@ namespace DerpApp
 
             Assert.Equal(newCuisine, foundCuisine);
         }
+
+        [Fact]
+        public void Test_DeleteIndividualCuisine_Delete()
+        {
+            Cuisine newCuisine = new Cuisine("Pizza Palace", 1);
+            newCuisine.Save();
+            Cuisine.DeleteSpecific(newCuisine.GetId());
+
+            List<Cuisine> testResult = new List<Cuisine>{};
+            List<Cuisine> result = Cuisine.GetAll();
+
+            Assert.Equal(testResult, result);
+        }
     }
 }
