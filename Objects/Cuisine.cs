@@ -54,6 +54,62 @@ namespace DerpApp
 
             return allCuisines;
         }
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO cuisines(name) OUTPUT INSERTED.id VALUES(@CuisineName);", conn);
+
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@CuisineName";
+            nameParameter.Value = this.GetName();
+            cmd.Parameters.Add(nameParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
+        }
+        public static Cuisine Find(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM cuisines WHERE id = @CuisineId;", conn);
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@CuisineId";
+            idParameter.Value = id.ToString();
+
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundId = 0;
+            string foundName = null;
+
+            while(rdr.Read())
+            {
+                foundId = rdr.GetInt32(0);
+                foundName = rdr.GetString(1);
+            }
+
+            Cuisine foundCuisine = new Cuisine(foundName, foundId);
+
+            return foundCuisine;
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();
@@ -63,6 +119,7 @@ namespace DerpApp
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
         public override bool Equals(System.Object otherCuisine)
         {
             if(!(otherCuisine is Cuisine))

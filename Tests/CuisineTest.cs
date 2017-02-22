@@ -33,5 +33,28 @@ namespace DerpApp
 
             Assert.Equal(first, second);
         }
+
+        [Fact]
+        public void Test_SavesToDatabase_Save()
+        {
+            Cuisine newCuisine = new Cuisine("Mexican");
+            newCuisine.Save();
+
+            List<Cuisine> result = Cuisine.GetAll();
+            List<Cuisine> testResult = new List<Cuisine>{newCuisine};
+
+            Assert.Equal(testResult, result);
+        }
+
+        [Fact]
+        public void Test_FindSearchedCuisine_Find()
+        {
+            Cuisine newCuisine = new Cuisine("Mexican");
+            newCuisine.Save();
+
+            Cuisine foundCuisine = Cuisine.Find(newCuisine.GetId());
+
+            Assert.Equal(newCuisine, foundCuisine);
+        }
     }
 }
