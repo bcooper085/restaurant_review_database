@@ -90,6 +90,16 @@ namespace DerpApp
             Assert.Equal(testResult, result);
         }
 
+        [Fact]
+        public void Test_UpdateRestaurantName_Update()
+        {
+            Restaurant newRestaurant = new Restaurant("Pizza Palace", 1);
+            newRestaurant.Save();
+
+            newRestaurant.UpdateName("Mexican Palace");
+
+            Assert.Equal("Mexican Palace", newRestaurant.GetName());
+        }
 
     }
 }
