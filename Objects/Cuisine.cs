@@ -82,6 +82,7 @@ namespace DerpApp
                 conn.Close();
             }
         }
+
         public static Cuisine Find(int id)
         {
             SqlConnection conn = DB.Connection();
@@ -110,6 +111,39 @@ namespace DerpApp
             return foundCuisine;
         }
 
+        public void UpdateName(string NewName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE cuisines SET name = @NewName OUTPUT INSERTED.name WHERE id = @CuisineId;", conn);
+
+            SqlParameter nameParameter = new SqlParameter();
+            nameParameter.ParameterName = "@NewName";
+            nameParameter.Value = NewName;
+            cmd.Parameters.Add(nameParameter);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@CuisineId";
+            idParameter.Value = this.GetId();
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._name = rdr.GetString(0);
+            }
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
 
         public static void DeleteSpecific(int id)
         {
