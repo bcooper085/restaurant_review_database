@@ -56,5 +56,25 @@ namespace DerpApp
 
             Assert.Equal(newRestaurant, foundRestaurant);
         }
+
+        [Fact]
+        public void Test_SpecificRestaurantsBasedOnCuisine_Find()
+        {
+            Cuisine newCuisine = new Cuisine("Italian");
+            newCuisine.Save();
+            Restaurant newRestaurant = new Restaurant("Pizza Palace", newCuisine.GetId());
+            newRestaurant.Save();
+
+            Cuisine testCuisine = new Cuisine("Mexican");
+            testCuisine.Save();
+            Restaurant testRestaurant = new Restaurant("Mexican Palace", testCuisine.GetId());
+            testRestaurant.Save();
+
+
+            List<Restaurant> foundRestaurants = Restaurant.GetByCuisine(newCuisine.GetId());
+            List<Restaurant> expectedRestaurantList = new List<Restaurant>{newRestaurant};
+
+            Assert.Equal(expectedRestaurantList, foundRestaurants);
+        }
     }
 }

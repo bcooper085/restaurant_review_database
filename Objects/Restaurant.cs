@@ -135,6 +135,49 @@ namespace DerpApp
             conn.Close();
         }
 
+        public static List<Restaurant> GetByCuisine(int id)
+        {
+
+            List<Restaurant> foundByCuisineRestaurants = new List<Restaurant>{};
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId", conn);
+
+            SqlParameter cuisineParameter = new SqlParameter();
+            cuisineParameter.ParameterName = "@CuisineId";
+            cuisineParameter.Value = id;
+            cmd.Parameters.Add(cuisineParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                int foundId = rdr.GetInt32(0);
+                string foundName = rdr.GetString(1);
+                int foundCuisineId = rdr.GetInt32(2);
+                Restaurant foundRestaurant = new Restaurant(foundName, foundCuisineId, foundId);
+                foundByCuisineRestaurants.Add(foundRestaurant);
+            }
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
+
+            return foundByCuisineRestaurants;
+
+
+        }
+
+
+
+
+//Override Equal
         public override bool Equals(System.Object otherRestaurant)
         {
             if(!(otherRestaurant is Restaurant))
@@ -150,7 +193,5 @@ namespace DerpApp
                 return(idEquality && nameEquality && cuisineEquality);
             }
         }
-
-
     }
 }
