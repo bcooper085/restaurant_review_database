@@ -99,7 +99,11 @@ namespace DerpApp
         {
             Cuisine testCuisine = new Cuisine("Mexican");
             testCuisine.Save();
-            string cuisineInput = "Mexican";
+            Cuisine testCuisine2 = new Cuisine("Chinese");
+            testCuisine2.Save();
+            Cuisine testCuisine3 = new Cuisine("Thai");
+            testCuisine3.Save();
+            string cuisineInput = "Italian";
             int cuisineId;
 
             if(Cuisine.FindByName(cuisineInput).GetName() == null)
@@ -119,8 +123,12 @@ namespace DerpApp
             Restaurant newRestaurant = new Restaurant("Pizza Palace", cuisineId);
             newRestaurant.Save();
 
-            string expected = "Mexican";
-            string actual = Cuisine.GetAll()[0].GetName();
+            string expected = "Italian";
+            string actual = Cuisine.GetAll()[3].GetName();
+            foreach(Cuisine cuisine in Cuisine.GetAll())
+            {
+                Console.WriteLine(cuisine.GetName());
+            }
 
             Assert.Equal(expected, actual);
         }

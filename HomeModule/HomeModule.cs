@@ -17,19 +17,20 @@ namespace DerpApp
             };
 
             Post["/restaurant-add"] = _ => {
+
                 string cuisineInput = Request.Form["cuisine_input"];
                 int cuisineId;
-                try
-                {
-                    Cuisine newCuisine = Cuisine.FindByName(cuisineInput);
-                    cuisineId = newCuisine.GetId();
-                }
-                finally
+
+                if(Cuisine.FindByName(cuisineInput).GetName() == null)
                 {
 
                     Cuisine newCuisine = new Cuisine(cuisineInput);
                     newCuisine.Save();
                     cuisineId = newCuisine.GetId();
+                }
+                else
+                {
+                    cuisineId = Cuisine.FindByName(cuisineInput).GetId();
                 }
 
                 Restaurant newRestaurant = new Restaurant(Request.Form["restaurant_input"], cuisineId);
