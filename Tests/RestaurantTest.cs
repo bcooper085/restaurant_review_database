@@ -15,6 +15,8 @@ namespace DerpApp
         public void Dispose()
         {
             Restaurant.DeleteAll();
+            Review.DeleteAll();
+            Cuisine.DeleteAll();
         }
 
         [Fact]
