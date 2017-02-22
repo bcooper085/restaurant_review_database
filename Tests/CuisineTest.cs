@@ -82,5 +82,48 @@ namespace DerpApp
 
             Assert.Equal("Mexican Palace", newCuisine.GetName());
         }
+
+        [Fact]
+        public void Test_FindCuisineByName_FindByName()
+        {
+            Cuisine testCuisine = new Cuisine("Italian");
+            testCuisine.Save();
+
+            Cuisine actualCuisine = Cuisine.FindByName(testCuisine.GetName());
+
+            Assert.Equal(testCuisine, actualCuisine);
+        }
+
+        [Fact]
+        public void Test_AddCuisineIfNone_Save()
+        {
+            Cuisine testCuisine = new Cuisine("Mexican");
+            testCuisine.Save();
+            string cuisineInput = "Mexican";
+            int cuisineId;
+
+            if(Cuisine.FindByName(cuisineInput).GetName() == null)
+            {
+
+                Cuisine newCuisine = new Cuisine(cuisineInput);
+                newCuisine.Save();
+                cuisineId = newCuisine.GetId();
+                Console.WriteLine("You made it to if");
+            }
+            else
+            {
+                cuisineId = Cuisine.FindByName(cuisineInput).GetId();
+                Console.WriteLine("You made it to else");
+            }
+
+            Restaurant newRestaurant = new Restaurant("Pizza Palace", cuisineId);
+            newRestaurant.Save();
+
+            string expected = "Mexican";
+            string actual = Cuisine.GetAll()[0].GetName();
+
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

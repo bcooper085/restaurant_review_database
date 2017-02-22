@@ -1,0 +1,11 @@
+@if(Model["Cuisines"].Count == 0)
+{
+    <h2>There are no cuisines listed</h2>
+}
+else
+{
+    foreach(var cuisine in Model["Cuisines"])
+    {
+        <h2>@cuisine.GetName();</h2>
+    }
+}

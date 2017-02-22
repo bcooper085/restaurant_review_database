@@ -111,6 +111,34 @@ namespace DerpApp
             return foundCuisine;
         }
 
+        public static Cuisine FindByName(string searchedName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM cuisines WHERE name = @CuisineName;", conn);
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@CuisineName";
+            idParameter.Value = searchedName;
+
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundId = 0;
+            string foundName = null;
+
+            while(rdr.Read())
+            {
+                foundId = rdr.GetInt32(0);
+                foundName = rdr.GetString(1);
+            }
+
+            Cuisine foundCuisine = new Cuisine(foundName, foundId);
+
+            return foundCuisine;
+        }
+
         public void UpdateName(string NewName)
         {
             SqlConnection conn = DB.Connection();

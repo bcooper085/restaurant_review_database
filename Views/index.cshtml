@@ -1,0 +1,14 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+@if(Model["Restaurants"].Count == 0)
+{
+    <h2>There are no restaurants listed</h2>
+}
+else
+{
+    foreach(var restaurant in Model["Restaurants"])
+    {
+        <h1>@restaurant.GetName()</h1>
+    }
+}

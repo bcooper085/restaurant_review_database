@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Derp App</title>
+    </head>
+    <body>
+        @RenderBody()
+        @Html.Partial("Shared/_Cuisinebar.cshtml", @Model)
+
+        <form class="restaurant_form" action="/restaurant-add" method="post">
+            <input type="text" name="restaurant_input" placeholder="New Restaurant">
+            <input type="text" name="cuisine_input" placeholder="New Cuisine">
+            <button type="submit" name="button">Add</button>
+        </form>
+    </body>
+</html>
