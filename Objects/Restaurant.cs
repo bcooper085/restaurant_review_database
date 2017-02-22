@@ -125,6 +125,21 @@ namespace DerpApp
             return foundRestaurant;
         }
 
+        public static void DeleteSpecific(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM restaurants WHERE id = @RestaurantId;", conn);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@RestaurantId";
+            idParameter.Value = id;
+            cmd.Parameters.Add(idParameter);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();
@@ -142,7 +157,7 @@ namespace DerpApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId;", conn);
 
             SqlParameter cuisineParameter = new SqlParameter();
             cuisineParameter.ParameterName = "@CuisineId";

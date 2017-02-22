@@ -76,5 +76,18 @@ namespace DerpApp
 
             Assert.Equal(expectedRestaurantList, foundRestaurants);
         }
+
+        [Fact]
+        public void Test_DeleteIndividualRestaurant_Delete()
+        {
+            Restaurant newRestaurant = new Restaurant("Pizza Palace", 1);
+            newRestaurant.Save();
+            Restaurant.DeleteSpecific(newRestaurant.GetId());
+
+            List<Restaurant> testResult = new List<Restaurant>{};
+            List<Restaurant> result = Restaurant.GetAll();
+
+            Assert.Equal(testResult, result);
+        }
     }
 }
