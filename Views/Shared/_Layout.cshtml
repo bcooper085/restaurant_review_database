@@ -57,6 +57,16 @@
               {
                 <h5>There are no recent reviews</h5>
               }
+              else if(Model["Reviews"].Count < 4)
+              {
+                foreach(var review in Model["Reviews"])
+                {
+                  <div class="z-depth-2 tile-box-div footer-review">
+                    <p>@review.GetName()</p>
+                    <p>@review.GetReview()</p>
+                  </div>
+                }
+              }
               else
               {
                 <div class="row">
