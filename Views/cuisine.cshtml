@@ -23,7 +23,7 @@
 
 
 <div class="row edit-cuisine-row">
-  <h4>Make edits to this cuisine:</h4>
+  <h4>Make edits to this cuisine</h4>
   <form  action="/cuisines/@Model["Cuisine Object"].GetId()/edit" method="post">
     <input type="hidden" name="_method" value="PATCH">
     <input type="text" name="cuisine_name_edit" value="@Model["Cuisine Object"].GetName()">

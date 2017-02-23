@@ -1,14 +1,16 @@
 body {
   background-color: #f9f7f7;
   word-break: normal;
+  color: #bc2022;
 }
 
 a {
-  color: black;
+  color: #bc2022;
 }
 
 h2 {
   font-family: 'Bahiana', cursive;
+  color: #bc2022;
 }
 
 .body {
@@ -33,7 +35,7 @@ h2 {
   margin-top: -35px;
   padding-top: 5%;
   padding-left: 5%;
-  border-bottom: 2px solid #a8a8a8;
+  border-bottom: 2px solid #eff785;
 }
 
 .header a {
@@ -61,6 +63,7 @@ h2 {
 
 .btn:hover {
   background-color: #fc5d5d;
+  color: white;
 }
 
 .edit-cuisine-row {
@@ -90,6 +93,6 @@ h2 {
 }
 
 .about {
-  border-top: 1px solid black;
+  border-top: 1px solid #bc2022;
   margin-bottom: 5%;
 }
