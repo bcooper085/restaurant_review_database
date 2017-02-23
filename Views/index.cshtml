@@ -1,14 +1,16 @@
 @{
     Layout="Shared/_Layout.cshtml";
 }
+
+<h2>Restaurants</h2>
 @if(Model["Restaurants"].Count == 0)
 {
-    <h4>There are no restaurants listed</h4>
+    <h5>There are no restaurants listed</h5>
 }
 else
 {
-    foreach(var restaurant in Model["Restaurants"])
-    {
-        <h4><a href="/restaurants/@restaurant.GetId()">@restaurant.GetName()<a/></h4>
-    }
+  @foreach(var restaurant in Model["Restaurants"])
+  {
+      <a href="/restaurants/@restaurant.GetId()"><div class="row tile-box-div tile-box-div-hover z-depth-2"><h5>@restaurant.GetName()</h5></div></a>
+  }
 }

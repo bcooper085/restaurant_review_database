@@ -1,25 +1,19 @@
-@if(Model["Cuisines"].Count == 0)
-{
-    <h5>There are no cuisines listed</h5>
-}
-else
-{
-    <h4><u>Cuisines</u></h4>
-    foreach(var cuisine in Model["Cuisines"])
-    {
-        <h5><a href="/cuisines/@cuisine.GetId()">@cuisine.GetName()</a></h5>
-    }
-}
 
-@if(Model["Restaurants"].Count == 0)
-{
-    <h5>There are no restaurants listed</h5>
-}
-else
-{
-    <h4><u>Restaurants</u></h4>
-    foreach(var restaurant in Model["Restaurants"])
-    {
-        <h5><a href="/restaurants/@restaurant.GetId()">@restaurant.GetName()</a></h5>
-    }
-}
+<div class="cuisine-bar">
+  <h2>Cuisines</h2>
+  @if(Model["Cuisines"].Count == 0)
+  {
+      <h4>There are no cuisines listed</h4>
+  }
+  else
+  {
+      foreach(var cuisine in Model["Cuisines"])
+      {
+          <a href="/cuisines/@cuisine.GetId()">
+            <div class="row tile-box-div tile-box-div-hover z-depth-2">
+            <h5>@cuisine.GetName()</h5>
+            </div>
+          </a>
+      }
+  }
+</div>

@@ -1,5 +1,5 @@
 body {
-  background-color: #00b6ce;
+  background-color: #f9f7f7;
   word-break: normal;
 }
 
@@ -12,6 +12,22 @@ a {
 }
 .title{
   margin: 1%;
+  padding: 2%;
+}
+.header {
+  background-color: #bc2022;
+  color: white;
+  width: 100vw;
+  position: relative;
+  top: 0px;
+  margin-top: -35px;
+  padding-top: 5%;
+  padding-left: 5%;
+  border-bottom: 2px solid #a8a8a8;
+}
+
+.header a {
+  color: white;
 }
 
 .add-button {
@@ -45,10 +61,13 @@ a {
 
 .tile-box-div {
   padding: 3%;
+  width: 100%;
+  border-radius: 2px;
 }
 
 .tile-box-div-hover:hover {
-  background-color: #77f9bb;
+  background-color: #bc2022;
+  color: white;
 }
 
 .success {

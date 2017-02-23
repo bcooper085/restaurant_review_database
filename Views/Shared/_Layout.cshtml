@@ -9,12 +9,13 @@
         <title>Derp App</title>
     </head>
     <body>
-      <div class="body">
         <div class="header row">
-          <div class="title">
-            <h1><a href="/">DerpApp</a></h1>
-            <h4>A Yelp for Derps!</h4>
-          </div>
+          <a href="/">
+            <div class="title hoverable">
+              <h1>DerpApp</h1>
+              <h4>A Yelp for Derps!</h4>
+            </div>
+          </a>
           <div class="add-button col s12">
             <div class="row">
               <button class="btn waves-effect waves-light" type="button" name="button" id="add-restaurant">Add Restaurant</button>
@@ -33,6 +34,7 @@
             </div>
           </div>
         </div>
+        <div class="body">
         <div class="row">
           <div class="col m4">
             @Html.Partial("Shared/_Cuisinebar.cshtml", @Model)
@@ -45,4 +47,19 @@
         </div>
       </div>
     </body>
+    <footer>
+      <div class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="about">
+              <p>This page was created by Brandon Cooper and Lawrence Eby at the Epicodus Code School in Seattle. It will store reviews, restaurants, and cuisines and is meant to show proficiency in databases.</p>
+              <a href="https://larryeby.github.io/Portfolio/">Eby's Portfolio</a>
+              <a href="https://github.com/larryeby/DerpApp">Github</a>
+              <p>--</p>
+              <a href="https://github.com/bcooper085/restaurant_review_database">Brandon's Github</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 </html>
