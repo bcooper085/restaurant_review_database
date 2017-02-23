@@ -57,14 +57,15 @@ h2 {
   float:left;
   margin-bottom: 5%;
   margin-right: 1%;
-  background-color: #eff785;
+  background-color: #eff785 !important;
   color: black;
 }
 
-.btn:hover {
-  background-color: #fc5d5d;
+.btn:hover, .btn:active, .btn:visited {
+  background-color: #fc5d5d!important;
   color: white;
 }
+
 
 .edit-cuisine-row {
   position: relative;
