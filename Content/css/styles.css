@@ -1,5 +1,5 @@
 body {
-  background-color: orange;
+  background-color: #00b6ce;
   word-break: normal;
 }
 
@@ -9,6 +9,9 @@ a {
 
 .body {
   margin: 5%;
+}
+.title{
+  margin: 1%;
 }
 
 .add-button {
@@ -22,13 +25,32 @@ a {
   float:left;
 }
 
+::-webkit-input-placeholder {
+   color: white;
+}
+
+
 .btn {
   float:left;
   margin-bottom: 5%;
   margin-right: 1%;
+  background-color: #77f9bb;
+  color: black;
 }
 
 .edit-cuisine-row {
   position: relative;
   bottom: 0px;
+}
+
+.tile-box-div {
+  padding: 3%;
+}
+
+.tile-box-div-hover:hover {
+  background-color: #77f9bb;
+}
+
+.success {
+  display: none;
 }

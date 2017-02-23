@@ -4,27 +4,32 @@
 
 <div class="row">
   <h2>@Model["Restaurant Object"].GetName()</h2>
-  <h4>Cuisine:</h4>
-  <p>@Model["Cuisine Object"].GetName()</p>
-
-  <h4>Reviews:</h4>
 </div>
 <div class="row">
+  <h4>Cuisine:</h4>
+  <h5>@Model["Cuisine Object"].GetName()</h5>
+</div>
+<div class="row">
+  <h4>Reviews:</h4>
   @if(@Model["Review Object"].Count == 0)
   {
-    <h3>Be the first to review this restaurant!</h3>
+    <div class="row z-depth-2 tile-box-div">
+    <h5>Be the first to review this restaurant!</h5>
+    </div>
   }
   else
   {
     @foreach(var review in @Model["Review Object"])
     {
-        <h5>@review.GetName()</h5>
-        <p>@review.GetReview()</p>
-        <form action="/review/delete/@review.GetId()" method="post">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="btn waves-effect waves-light" type="submit">Delete</button>
-        </form>
-        <a class="btn waves-effect waves-light" href="/review/edit/@review.GetId()">Edit</a>
+        <div class="row z-depth-2 tile-box-div">
+          <h5>@review.GetName()</h5>
+          <p>@review.GetReview()</p>
+          <form action="/review/delete/@review.GetId()" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn waves-effect waves-light" type="submit">Delete</button>
+          </form>
+          <a class="btn waves-effect waves-light" href="/review/edit/@review.GetId()">Edit</a>
+        </div>
     }
   }
 </div>

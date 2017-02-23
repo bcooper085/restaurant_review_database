@@ -12,10 +12,12 @@
   else
   {
     <h4>Restaurants with this cuisine:</h4>
-    @foreach(var restaurant in Model["Restaurant List"])
-    {
-        <h5><a href="/restaurants/@restaurant.GetId()">@restaurant.GetName()</a></h5>
-    }
+
+      @foreach(var restaurant in Model["Restaurant List"])
+      {
+          <a href="/restaurants/@restaurant.GetId()"><div class="row tile-box-div tile-box-div-hover z-depth-2"><h5>@restaurant.GetName()</h5></div></a>
+      }
+
   }
 </div>
 
@@ -24,7 +26,7 @@
   <h4>Make edits to this cuisine:</h4>
   <form  action="/cuisines/@Model["Cuisine Object"].GetId()/edit" method="post">
     <input type="hidden" name="_method" value="PATCH">
-    <input type="text" name="cuisine_name_edit" placeholder="Edit Cuisine Name">
+    <input type="text" name="cuisine_name_edit" value="@Model["Cuisine Object"].GetName()">
     <button class="btn waves-effect waves-light" type="submit" name="button">Submit Change</button>
   </form>
 

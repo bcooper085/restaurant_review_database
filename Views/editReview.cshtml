@@ -1,3 +1,7 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+  }
+
 <div>
     <form action="/review/edit/@Model["Review Object"].GetId()" method="post">
         <input type="hidden" name="_method" value="PATCH">
