@@ -1,30 +1,36 @@
 @{
     Layout="Shared/_Layout";
 }
-<h2>@Model["Cuisine Object"].GetName()</h2>
 
-@if(Model["Restaurant List"].Count == 0)
-{
-  <h3>There are no restaurants listed under this cuisine</h3>
-}
-else
-{
-  @foreach(var restaurant in Model["Restaurant List"])
+<div class="row">
+  <h2>@Model["Cuisine Object"].GetName()</h2>
+
+  @if(Model["Restaurant List"].Count == 0)
   {
-      <h3>@restaurant.GetName()</h3>
+    <h4>There are no restaurants listed under this cuisine</h4>
   }
-}
+  else
+  {
+    <h4>Restaurants with this cuisine:</h4>
+    @foreach(var restaurant in Model["Restaurant List"])
+    {
+        <h5><a href="/restaurants/@restaurant.GetId()">@restaurant.GetName()</a></h5>
+    }
+  }
+</div>
 
 
-<form  action="/cuisines/@Model["Cuisine Object"].GetId()/edit" method="post">
-  <input type="hidden" name="_method" value="PATCH">
-  <input type="text" name="cuisine_name_edit" placeholder="Edit Name">
-  <button type="submit" name="button">Submit Change</button>
-</form>
+<div class="row edit-cuisine-row">
+  <h4>Make edits to this cuisine:</h4>
+  <form  action="/cuisines/@Model["Cuisine Object"].GetId()/edit" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="text" name="cuisine_name_edit" placeholder="Edit Cuisine Name">
+    <button class="btn waves-effect waves-light" type="submit" name="button">Submit Change</button>
+  </form>
 
-<form  action="/cuisines/@Model["Cuisine Object"].GetId()/delete" method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type="submit" name="button">Delete Cuisine</button>
-</form>
+  <form  action="/cuisines/@Model["Cuisine Object"].GetId()/delete" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn waves-effect waves-light" type="submit" name="button">Delete Cuisine</button>
+  </form>
 
-<a href="/">Go Home</a>
+</div>
