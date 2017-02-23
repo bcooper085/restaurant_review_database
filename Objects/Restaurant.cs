@@ -158,6 +158,39 @@ namespace DerpApp
             }
         }
 
+        public void UpdateCuisine(int CuisineId)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE restaurants SET cuisine_id = @NewCuisine OUTPUT INSERTED.cuisine_id WHERE id = @RestaurantId;", conn);
+            SqlParameter newNameParameter = new SqlParameter();
+            newNameParameter.ParameterName = "@NewCuisine";
+            newNameParameter.Value = CuisineId;
+            cmd.Parameters.Add(newNameParameter);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@RestaurantId";
+            idParameter.Value = this.GetId();
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._cuisineId = rdr.GetInt32(0);
+            }
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         public static void DeleteSpecific(int id)
         {
             SqlConnection conn = DB.Connection();

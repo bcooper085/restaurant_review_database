@@ -3,10 +3,28 @@
 }
 <h2>@Model["Cuisine Object"].GetName()</h2>
 
-@foreach(var restaurant in Model["Restaurant List"])
+@if(Model["Restaurant List"].Count == 0)
 {
-    <h3>@restaurant.GetName()</h3>
+  <h3>There are no restaurants listed under this cuisine</h3>
+}
+else
+{
+  @foreach(var restaurant in Model["Restaurant List"])
+  {
+      <h3>@restaurant.GetName()</h3>
+  }
 }
 
+
+<form  action="/cuisines/@Model["Cuisine Object"].GetId()/edit" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="text" name="cuisine_name_edit" placeholder="Edit Name">
+  <button type="submit" name="button">Submit Change</button>
+</form>
+
+<form  action="/cuisines/@Model["Cuisine Object"].GetId()/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">Delete Cuisine</button>
+</form>
 
 <a href="/">Go Home</a>

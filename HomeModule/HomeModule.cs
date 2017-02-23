@@ -12,10 +12,10 @@ namespace DerpApp
             };
 
             Post["/delete-all"] = _ => {
-                    Cuisine.DeleteAll();
-                    Restaurant.DeleteAll();
-                    Review.DeleteAll();
-                    return View["success.cshtml", ModelMaker()];
+                Cuisine.DeleteAll();
+                Restaurant.DeleteAll();
+                Review.DeleteAll();
+                return View["success.cshtml", ModelMaker()];
             };
 
             Get["/cuisines/{id}"]= parameters => {
@@ -26,6 +26,17 @@ namespace DerpApp
                 return View["cuisine.cshtml", model];
             };
 
+            Patch["/cuisines/{id}/edit"] = parameters => {
+              Cuisine newCuisine = Cuisine.Find(parameters.id);
+              newCuisine.UpdateName(Request.Form["cuisine_name_edit"]);
+              return View["success.cshtml", ModelMaker()];
+            };
+
+            Delete["/cuisines/{id}/delete"] = parameters => {
+              Cuisine.DeleteSpecific(parameters.id);
+              return View["success.cshtml", ModelMaker()];
+            };
+
             Get["/restaurants/{id}"] = parameters => {
                 Restaurant newRestaurant = Restaurant.Find(parameters.id);
                 Dictionary<string, object> model = ModelMaker();
@@ -33,6 +44,35 @@ namespace DerpApp
                 model.Add("Cuisine Object", Cuisine.Find(newRestaurant.GetCuisineId()));
                 model.Add("Review Object", Review.GetByRestaurant(newRestaurant.GetId()));
                 return View["restaurant.cshtml", model];
+            };
+
+            Patch["/restaurants/{id}/edit"] = parameters => {
+              Restaurant newRestaurant = Restaurant.Find(parameters.id);
+              newRestaurant.UpdateName(Request.Form["restaurant_name_edit"]);
+
+              string cuisineInput = Request.Form["restaurant_cuisine_edit"];
+              int cuisineId;
+
+              if(Cuisine.FindByName(cuisineInput).GetName() == null)
+              {
+
+                  Cuisine newCuisine = new Cuisine(cuisineInput);
+                  newCuisine.Save();
+                  cuisineId = newCuisine.GetId();
+              }
+              else
+              {
+                  cuisineId = Cuisine.FindByName(cuisineInput).GetId();
+              }
+
+              newRestaurant.UpdateCuisine(cuisineId);
+
+              return View["success.cshtml", ModelMaker()];
+            };
+
+            Delete["/restaurants/{id}/delete"] = parameters => {
+              Restaurant.DeleteSpecific(parameters.id);
+              return View["success.cshtml", ModelMaker()];
             };
 
 

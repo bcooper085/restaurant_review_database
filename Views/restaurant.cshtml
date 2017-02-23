@@ -4,6 +4,19 @@
 <h2>@Model["Restaurant Object"].GetName()</h2>
 <p>Cuisine:</p>
 <h2>@Model["Cuisine Object"].GetName()</h2>
+<p>Edit Restaurant Info</p>
+<form  action="/restaurants/@Model["Restaurant Object"].GetId()/edit" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="text" name="restaurant_name_edit" placeholder="Edit Name">
+  <input type="text" name="restaurant_cuisine_edit" value="@Model["Cuisine Object"].GetName()">
+  <button type="submit" name="button">Submit Change</button>
+</form>
+
+<form  action="/restaurants/@Model["Restaurant Object"].GetId()/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">Delete Restaurant</button>
+</form>
+
 
 <p>Reviews:</p>
 @foreach(var review in @Model["Review Object"])
