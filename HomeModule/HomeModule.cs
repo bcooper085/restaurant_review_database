@@ -8,12 +8,30 @@ namespace DerpApp
         public HomeModule()
         {
             Get["/"] = _ => {
-                Dictionary<string, object> model = new Dictionary<string, object>{};
-                model.Add("Cuisines", Cuisine.GetAll());
-                model.Add("Restaurants", Restaurant.GetAll());
-                model.Add("Reviews", Review.GetAll());
-
                 return View["index.cshtml", ModelMaker()];
+            };
+
+            Post["/delete-all"] = _ => {
+                    Cuisine.DeleteAll();
+                    Restaurant.DeleteAll();
+                    Review.DeleteAll();
+                    return View["success.cshtml", ModelMaker()];
+            };
+
+            Get["/cuisines/{id}"]= parameters => {
+                Cuisine newCuisine = Cuisine.Find(parameters.id);
+                Dictionary<string, object> model = ModelMaker();
+                model.Add("Cuisine Object", newCuisine);
+                model.Add("Restaurant List", Restaurant.GetByCuisine(newCuisine.GetId()));
+                return View["cuisine.cshtml", model];
+            };
+
+            Get["/restaurants/{id}"] = parameters => {
+                Restaurant newRestaurant = Restaurant.Find(parameters.id);
+                Dictionary<string, object> model = ModelMaker();
+                model.Add("Restaurant Object", newRestaurant);
+                model.Add("Cuisine Object", Cuisine.Find(newRestaurant.GetCuisineId()));
+                return View["restaurant.cshtml", model];
             };
 
             Post["/restaurant-add"] = _ => {

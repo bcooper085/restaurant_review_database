@@ -1,0 +1,12 @@
+@{
+    Layout="Shared/_Layout";
+}
+<h2>@Model["Cuisine Object"].GetName()</h2>
+
+@foreach(var restaurant in Model["Restaurant List"])
+{
+    <h3>@restaurant.GetName()</h3>
+}
+
+
+<a href="/">Go Home</a>

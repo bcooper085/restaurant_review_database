@@ -9,6 +9,6 @@ else
 {
     foreach(var restaurant in Model["Restaurants"])
     {
-        <h1>@restaurant.GetName()</h1>
+        <h1><a href="restaurants/@restaurant.GetId()">@restaurant.GetName()<a/></h1>
     }
 }

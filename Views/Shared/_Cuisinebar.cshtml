@@ -6,6 +6,6 @@ else
 {
     foreach(var cuisine in Model["Cuisines"])
     {
-        <h2>@cuisine.GetName();</h2>
+        <h2><a href="cuisines/@cuisine.GetId()">@cuisine.GetName()</a></h2>
     }
 }
