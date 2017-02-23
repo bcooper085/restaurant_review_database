@@ -41,11 +41,6 @@ a {
   float:left;
 }
 
-::-webkit-input-placeholder {
-   color: white;
-}
-
-
 .btn {
   float:left;
   margin-bottom: 5%;
