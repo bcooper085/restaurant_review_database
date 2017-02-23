@@ -30,7 +30,7 @@ namespace DerpApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM cuisines;", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM cuisines ORDER BY name;", conn);
 
             SqlDataReader rdr = cmd.ExecuteReader();
 

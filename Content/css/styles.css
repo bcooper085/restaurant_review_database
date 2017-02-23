@@ -55,8 +55,12 @@ h2 {
   float:left;
   margin-bottom: 5%;
   margin-right: 1%;
-  background-color: #77f9bb;
+  background-color: #eff785;
   color: black;
+}
+
+.btn:hover {
+  background-color: #fc5d5d;
 }
 
 .edit-cuisine-row {
@@ -83,4 +87,9 @@ h2 {
   float:left;
   max-width: 21%;
   margin: 1%;
+}
+
+.about {
+  border-top: 1px solid black;
+  margin-bottom: 5%;
 }

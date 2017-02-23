@@ -37,7 +37,7 @@ namespace DerpApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants;", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants ORDER BY name;", conn);
 
             SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -223,7 +223,7 @@ namespace DerpApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId;", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId ORDER BY name;", conn);
 
             SqlParameter cuisineParameter = new SqlParameter();
             cuisineParameter.ParameterName = "@CuisineId";

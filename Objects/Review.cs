@@ -44,7 +44,7 @@ namespace DerpApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM reviews;", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM reviews ORDER BY id DESC;", conn);
 
             SqlDataReader rdr = cmd.ExecuteReader();
 

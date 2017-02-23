@@ -60,11 +60,11 @@
               else
               {
                 <div class="row">
-                @foreach(var review in @Model["Reviews"])
+                @for(var i = 0; i < 4; i++)
                 {
                   <div class="z-depth-2 tile-box-div footer-review">
-                    <p>@review.GetName()</p>
-                    <p>@review.GetReview()</p>
+                    <p>@Model["Reviews"][i].GetName()</p>
+                    <p>@Model["Reviews"][i].GetReview()</p>
                   </div>
                 }
                 </div>
