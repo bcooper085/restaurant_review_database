@@ -54,6 +54,7 @@ namespace DerpApp
             Cuisine newCuisine = new Cuisine("Mexican");
             newCuisine.Save();
 
+
             Cuisine foundCuisine = Cuisine.Find(newCuisine.GetId());
 
             Assert.Equal(newCuisine, foundCuisine);

@@ -5,5 +5,19 @@
 <p>Cuisine:</p>
 <h2>@Model["Cuisine Object"].GetName()</h2>
 
+<p>Reviews:</p>
+@foreach(var review in @Model["Review Object"])
+{
+    <h3>@review.GetName()</h3>
+    <p>@review.GetReview()</p>
+}
+
+<div>
+    <form action="/restaurants/@Model["Restaurant Object"].GetId()/add-Review" method="post">
+        <input type="text" name="reviewer" placeholder="Reviewer">
+        <input type="text" name="review" placeholder="Review">
+        <button type="submit" name="button">Submit</button>
+    </form>
+
 
 <a href="/">Go Home</a>

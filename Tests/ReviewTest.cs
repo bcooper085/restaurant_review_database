@@ -67,11 +67,6 @@ namespace DerpApp
             Review newReview = new Review("Person", "This is my review", newRestaurant.GetId());
             newReview.Save();
 
-            Restaurant testRestaurant = new Restaurant("Mexican", 1);
-            testRestaurant.Save();
-            Review testReview = new Review("Person", "This is my review", testRestaurant.GetId());
-            testReview.Save();
-
 
             List<Review> foundReviews = Review.GetByRestaurant(newRestaurant.GetId());
             List<Review> expectedReviewList = new List<Review>{newReview};

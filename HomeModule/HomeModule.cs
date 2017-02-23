@@ -31,7 +31,15 @@ namespace DerpApp
                 Dictionary<string, object> model = ModelMaker();
                 model.Add("Restaurant Object", newRestaurant);
                 model.Add("Cuisine Object", Cuisine.Find(newRestaurant.GetCuisineId()));
+                model.Add("Review Object", Review.GetByRestaurant(newRestaurant.GetId()));
                 return View["restaurant.cshtml", model];
+            };
+
+
+            Post["/restaurants/{id}/add-review"] = parameters => {
+                Review newReview = new Review(Request.Form["reviewer"], Request.Form["review"], parameters.id);
+                newReview.Save();
+                return View["success.cshtml", ModelMaker()];
             };
 
             Post["/restaurant-add"] = _ => {
