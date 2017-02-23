@@ -104,6 +104,26 @@ namespace DerpApp
 
                 return View["success.cshtml", ModelMaker()];
             };
+
+            Delete["/review/delete/{id}"] = parameters => {
+              Review.DeleteSpecific(parameters.id);
+              return View["success.cshtml", ModelMaker()];
+            };
+
+            Get["/review/edit/{id}"] = parameters => {
+                Dictionary<string, object> model = ModelMaker();
+                model.Add("Review Object", Review.Find(parameters.id));
+
+                return View["editReview.cshtml", model];
+            };
+
+            Patch["/review/edit/{id}"] = parameters => {
+              Review newReview = Review.Find(parameters.id);
+              newReview.UpdateReview(Request.Form["review_edit"]);
+              newReview.UpdateReviewerName(Request.Form["reviewer_edit"]);
+              return View["success.cshtml", ModelMaker()];
+            };
+
         }
 
         public static Dictionary<string, object> ModelMaker()

@@ -1,0 +1,8 @@
+<div>
+    <form action="/review/edit/@Model["Review Object"].GetId()" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="text" name="reviewer_edit" value="@Model["Review Object"].GetName()">
+        <input type="text" name="review_edit" value="@Model["Review Object"].GetReview()">
+        <button type="submit" name="button">Submit</button>
+    </form>
+</div>

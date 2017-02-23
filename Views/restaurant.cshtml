@@ -7,7 +7,7 @@
 <p>Edit Restaurant Info</p>
 <form  action="/restaurants/@Model["Restaurant Object"].GetId()/edit" method="post">
   <input type="hidden" name="_method" value="PATCH">
-  <input type="text" name="restaurant_name_edit" placeholder="Edit Name">
+  <input type="text" name="restaurant_name_edit" value="@Model["Restaurant Object"].GetName()"] placeholder="Edit Name">
   <input type="text" name="restaurant_cuisine_edit" value="@Model["Cuisine Object"].GetName()">
   <button type="submit" name="button">Submit Change</button>
 </form>
@@ -19,11 +19,24 @@
 
 
 <p>Reviews:</p>
-@foreach(var review in @Model["Review Object"])
+@if(@Model["Review Object"].Count == 0)
 {
-    <h3>@review.GetName()</h3>
-    <p>@review.GetReview()</p>
+  <h3>Be the first to review this restaurant!</h3>
 }
+else
+{
+  @foreach(var review in @Model["Review Object"])
+  {
+      <h3>@review.GetName()</h3>
+      <p>@review.GetReview()</p>
+      <form action="/review/delete/@review.GetId()" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Delete</button>
+      </form>
+      <a href="/review/edit/@review.GetId()">Edit</a>
+  }
+}
+
 
 <div>
     <form action="/restaurants/@Model["Restaurant Object"].GetId()/add-Review" method="post">
@@ -31,6 +44,7 @@
         <input type="text" name="review" placeholder="Review">
         <button type="submit" name="button">Submit</button>
     </form>
+</div>
 
 
 <a href="/">Go Home</a>

@@ -173,6 +173,40 @@ namespace DerpApp
             }
         }
 
+
+        public void UpdateReviewerName(string NewName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE reviews SET reviewer = @NewName OUTPUT INSERTED.reviewer WHERE id = @ReviewId;", conn);
+            SqlParameter newReviewerNameParameter = new SqlParameter();
+            newReviewerNameParameter.ParameterName = "@NewName";
+            newReviewerNameParameter.Value = NewName;
+            cmd.Parameters.Add(newReviewerNameParameter);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@ReviewId";
+            idParameter.Value = this.GetId();
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._review = rdr.GetString(0);
+            }
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if(conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         public static void DeleteSpecific(int id)
         {
             SqlConnection conn = DB.Connection();
