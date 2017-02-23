@@ -7,13 +7,23 @@ a {
   color: black;
 }
 
+h2 {
+  font-family: 'Bahiana', cursive;
+}
+
 .body {
   margin: 5%;
 }
-.title{
+.title {
+  font-family: 'Bahiana', cursive;
   margin: 1%;
   padding: 2%;
 }
+
+.title h4 {
+  font-family: 'Amatic SC', cursive;
+}
+
 .header {
   background-color: #bc2022;
   color: white;
@@ -67,4 +77,10 @@ a {
 
 .success {
   display: none;
+}
+
+.footer-review {
+  float:left;
+  max-width: 21%;
+  margin: 1%;
 }

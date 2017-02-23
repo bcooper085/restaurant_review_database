@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bahiana" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
         <link rel="stylesheet" href="/Content/css/styles.css" media="screen" title="no title">
         <script src="/Content/js/jquery-3.1.1.js" charset="utf-8"></script>
@@ -12,7 +13,7 @@
         <div class="header row">
           <a href="/">
             <div class="title hoverable">
-              <h1>DerpApp</h1>
+              <h1>Derp-App</h1>
               <h4>A Yelp for Derps!</h4>
             </div>
           </a>
@@ -50,6 +51,26 @@
     <footer>
       <div class="page-footer">
         <div class="container">
+          <div class="row">
+            <h4>Recent Reviews:</h4>
+              @if(Model["Reviews"].Count == 0)
+              {
+                <h5>There are no recent reviews</h5>
+              }
+              else
+              {
+                <div class="row">
+                @foreach(var review in @Model["Reviews"])
+                {
+                  <div class="z-depth-2 tile-box-div footer-review">
+                    <p>@review.GetName()</p>
+                    <p>@review.GetReview()</p>
+                  </div>
+                }
+                </div>
+              }
+
+          </div>
           <div class="row">
             <div class="about">
               <p>This page was created by Brandon Cooper and Lawrence Eby at the Epicodus Code School in Seattle. It will store reviews, restaurants, and cuisines and is meant to show proficiency in databases.</p>
