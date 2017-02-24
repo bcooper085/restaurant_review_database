@@ -20,6 +20,7 @@ h2 {
   font-family: 'Bahiana', cursive;
   margin: 1%;
   padding: 2%;
+  position: relative;
 }
 
 .title h4 {
@@ -96,4 +97,38 @@ h2 {
 .about {
   border-top: 1px solid #bc2022;
   margin-bottom: 5%;
+}
+
+//Logo Object
+
+.logo-object {
+  position: absolute;
+  left: 400px;
+  float: right;
+}
+
+.plate {
+  position: relative;
+  top: 50px;
+  left: 50px;
+  height: 50px;
+  width: 80px;
+  background-color: #d3d3d3;
+  border-radius: 50%;
+  transform: rotate(10deg);
+  box-shadow: 0px 2px 0 7px #b2b2b2,
+              0px 2px 0 9px #606060;
+}
+
+.box {
+  height: 60px;
+  width: 39px;
+  position: relative;
+  left: 71px;
+  bottom: 32px;
+  background-color: #af7575;
+  transform: skew(25deg) rotate(60deg);
+  border-radius: 1px;
+  box-shadow: 7px 10px 0 0 white,
+              14px 20px 0 0 black;
 }
